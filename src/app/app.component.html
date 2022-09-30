@@ -9,38 +9,60 @@
       </p-inputNumber>
     </div>
     <div class="p-field p-col-12 p-md-6">
-      <label for="cmd">Команда</label>
-      <p-inputNumber
-        inputId="cmd"
-        formControlName="cmd"
-        [required]="true">
-      </p-inputNumber>
+      <label for="command_id">Команда</label>
+      <p-dropdown
+        inputId="command_id"
+        formControlName="command_id"
+        [options]="commands"
+        [showClear]="true"
+        [required]="true"
+        optionLabel="value"
+        optionValue="id"
+        placeholder="Выберите команду"
+        (onChange)="onChangeCmd($event)">
+        <ng-template
+          let-command
+          pTemplate="item">
+          <div pTooltip={{command.value}}>
+            {{command.value}}
+          </div>
+        </ng-template>
+      </p-dropdown>
     </div>
   </div>
   <div class="grid p-fluid p-3 justify-content-center gap-2">
-    <div class="p-field p-col-12 p-md-4">
-      <label for="param1">Параметр 1</label>
+    <div *ngIf="currentCmd.parameter_name1" class="p-field">
+      <label for="parameter1">{{currentCmd.parameter_name1}}</label>
       <p-inputNumber
-        inputId="param1"
-        formControlName="param1">
+        inputId="parameter1"
+        formControlName="parameter1"
+        [(ngModel)]="currentCmd.parameter_default_value1">
       </p-inputNumber>
     </div>
-    <div class="p-field p-col-12 p-md-4">
-      <label for="param2">Параметр 2</label>
+    <div *ngIf="currentCmd.parameter_name2" class="p-field">
+      <label for="parameter2">{{currentCmd.parameter_name2}}</label>
       <p-inputNumber
-        inputId="param2"
-        formControlName="param2">
+        inputId="parameter2"
+        formControlName="parameter2"
+        [(ngModel)]="currentCmd.parameter_default_value2">
       </p-inputNumber>
     </div>
-    <div class="p-field p-col-12 p-md-4">
-      <label for="param3">Параметр 3</label>
+    <div *ngIf="currentCmd.parameter_name3" class="p-field">
+      <label for="parameter3">{{currentCmd.parameter_name3}}</label>
       <p-inputNumber
-        inputId="param3"
-        formControlName="param3">
+        inputId="parameter3"
+        formControlName="parameter3"
+        [(ngModel)]="currentCmd.parameter_default_value3">
       </p-inputNumber>
     </div>
   </div>
   <div class="grid p-3 justify-content-center">
-    <button pButton pRipple type="button" label="Отправить" class="p-button-success"></button>
+    <button
+      pButton
+      pRipple
+      type="submit"
+      label="Отправить"
+      class="p-button-success"
+      [disabled]="!cmdForm.valid"></button>
   </div>
 </form>

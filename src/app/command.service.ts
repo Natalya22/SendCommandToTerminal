@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Command } from './cmdModel';
 
 @Injectable()
 export class CommandService {
@@ -8,24 +9,15 @@ export class CommandService {
 
   constructor(private http: HttpClient) {}
 
+  getToken(login: string, pswd: string): Observable<string> {
+    return this.http.get<string>(this.url + `token?login=${login}&password=${pswd}`);
+  }
+
   getCommands(token: string): Observable<any> {
     return this.http.get(this.url + 'commands/types?token=' + token);
   }
 
-    // getLicense(id: number) {
-    //     return this.http.get(this.url + '/' + id);
-    // }
-
-    // createLicense(license: License) {
-    //     return this.http.post(this.url, license);
-    // }
-
-    // updateLicense(license: License) {
-
-    //     return this.http.put(this.url, license);
-    // }
-
-    // deleteLicense(id: number) {
-    //     return this.http.delete(this.url + '/' + id);
-    // }
+  sendCommand(token: string, body: any): Observable<any> {
+    return this.http.post(this.url + `terminals/${body['terminalID']}/commands?token=${token}`, body);
+  }
 }

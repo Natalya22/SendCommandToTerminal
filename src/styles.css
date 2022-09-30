@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+.p-fluid .p-dropdown
+{
+  display: inline-flex !important;
+  width: 100%;
+}
+.p-dropdown .p-dropdown-panel
+{
+  width: 100%;
+}
+
+.p-dropdown-item
+{
+  text-overflow: ellipsis;
+}

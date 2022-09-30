@@ -9,6 +9,9 @@ import { AppComponent } from './app.component';
 
 import {ButtonModule} from 'primeng/button';
 import {InputNumberModule} from 'primeng/inputnumber';
+import {DropdownModule} from 'primeng/dropdown';
+import { FormsModule }   from '@angular/forms';
+import {TooltipModule} from 'primeng/tooltip';
 
 @NgModule({
   declarations: [
@@ -18,9 +21,12 @@ import {InputNumberModule} from 'primeng/inputnumber';
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     ButtonModule,
     InputNumberModule,
-    HttpClientModule
+    DropdownModule,
+    FormsModule,
+    TooltipModule
   ],
   providers: [CommandService],
   bootstrap: [AppComponent]
